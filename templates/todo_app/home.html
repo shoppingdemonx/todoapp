@@ -1,39 +1,24 @@
 {% extends 'base.html' %} 
-{% block title %}Home Page - TodoApp{% endblock %}
+{% block title %}Home Page - TodoApp{% endblock %} 
 {% block body %}
 <div class="container">
   <h1>Todo List</h1>
 
-  <div class="input-box">
-    <input type="text" placeholder="Add a new task..." />
-    <button>Add</button>
-  </div>
+    <form action="{% url 'add-task' %}" class="input-box" method="get">
+      <input type="text" name="task" placeholder="Add a new task..." />
+      <button type="submit">Add</button>
+    </form>
 
   <ul>
+    {% for item in listItems %}
     <li>
       <div class="task">
-        <input type="checkbox" id="t1" />
-        <label for="t1">Complete project</label>
+        <input type="checkbox" id="{{item.id}}" />
+        <label for="{{item.id}}">{{item.title}}</label>
       </div>
-      <span class="delete">❌</span>
+      <a class="delete" href="{% url 'delete-task' item.id %}">❌</a>
     </li>
-
-    <li>
-      <div class="task">
-        <input type="checkbox" id="t2" />
-        <label for="t2">Go to gym</label>
-      </div>
-      <span class="delete">❌</span>
-    </li>
-
-    <li>
-      <div class="task">
-        <input type="checkbox" id="t3" />
-        <label for="t3">Read a book</label>
-      </div>
-      <span class="delete">❌</span>
-    </li>
+    {% endfor %} 
   </ul>
-
 </div>
 {% endblock %}
