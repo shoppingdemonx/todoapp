@@ -25,5 +25,6 @@ def deleteTask(request,pk):
     if task:
         task.delete()
     return redirect('home')
-            
+
+
         

@@ -13,7 +13,6 @@
     {% for item in listItems %}
     <li>
       <div class="task">
-        <input type="checkbox" id="{{item.id}}" />
         <label for="{{item.id}}">{{item.title}}</label>
       </div>
       <a class="delete" href="{% url 'delete-task' item.id %}">❌</a>
